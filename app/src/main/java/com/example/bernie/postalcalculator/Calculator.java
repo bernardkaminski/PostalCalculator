@@ -11,7 +11,6 @@ public class Calculator {
     }
     public static double calcStandardInCanada(ItemType type, double weight)
     {
-
         switch (type){
             case StampsInBookletsCoilsPanes:
                 if(weight > 50)
@@ -20,7 +19,7 @@ public class Calculator {
                     return 1.20;
                 if(weight >0)
                     return .85;
-                return -1;
+                return -2;
             case MeterPostalIndicia:
                 if(weight > 50)
                     return -1;
@@ -28,7 +27,7 @@ public class Calculator {
                     return 1.19;
                 if(weight >0)
                     return .80;
-                return -1;
+                return -2;
             case SingleStamp:
                 if(weight > 50)
                     return -1;
@@ -36,9 +35,9 @@ public class Calculator {
                     return 1.20;
                 if(weight >0)
                     return 1.00;
-                return -1;
+                return -2;
             default:
-                return -1;
+                return -2;
         }
 
     }
@@ -59,7 +58,7 @@ public class Calculator {
                     return 2.77;
                 if(weight >0)
                     return 1.71;
-                return -1;
+                return -2;
             case SingleStamp:
                 if(weight > 500)
                     return -1;
@@ -73,12 +72,10 @@ public class Calculator {
                     return 2.95;
                 if(weight >0)
                     return 1.80;
-                return -1;
+                return -2;
             default:
-                return -1;
+                return -2;
         }
-
-
     }
 
     public static double calcLetterPostInUS(ItemType type, double weight)
@@ -93,7 +90,7 @@ public class Calculator {
                     return 1.72;
                 if(weight >0)
                     return 1.19;
-                return -1;
+                return -2;
             case SingleStamp:
                 if(weight > 50)
                     return -1;
@@ -101,18 +98,15 @@ public class Calculator {
                     return 1.80;
                 if(weight >0)
                     return 1.19;
-                return -1;
+                return -2;
             default:
-                return -1;
+                return -2;
         }
-
     }
 
     public static double calcOtherInUS(ItemType type, double weight)
     {
-
         switch (type){
-
             case MeterPostalIndicia:
                 if(weight > 500)
                     return -1;
@@ -122,7 +116,7 @@ public class Calculator {
                     return 4.85;
                 if(weight >0)
                     return 2.68;
-                return -1;
+                return -2;
             case SingleStamp:
                 if(weight > 500)
                     return -1;
@@ -132,11 +126,10 @@ public class Calculator {
                     return 5.15;
                 if(weight >0)
                     return 2.95;
-                return -1;
+                return -2;
             default:
-                return -1;
+                return -2;
         }
-
     }
 
     public static double calcLetterPostInternational(ItemType type, double weight)
@@ -150,7 +143,7 @@ public class Calculator {
                     return 3.42;
                 if(weight >0)
                     return 2.36;
-                return -1;
+                return -2;
             case SingleStamp:
                 if(weight > 50)
                     return -1;
@@ -158,9 +151,9 @@ public class Calculator {
                     return 3.60;
                 if(weight >0)
                     return 2.50;
-                return -1;
+                return -2;
             default:
-                return -1;
+                return -2;
         }
 
     }
@@ -177,7 +170,7 @@ public class Calculator {
                     return 10.30;
                 if(weight >0)
                     return 5.90;
-                return -1;
+                return -2;
             case MeterPostalIndicia:
                 if(weight > 500)
                     return -1;
@@ -187,12 +180,10 @@ public class Calculator {
                     return 9.69;
                 if(weight >0)
                     return 5.56;
-                return -1;
+                return -2;
             default:
-                return -1;
+                return -2;
         }
-
     }
-
 
 }

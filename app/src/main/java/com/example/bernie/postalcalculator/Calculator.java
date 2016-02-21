@@ -200,7 +200,7 @@ public class Calculator {
 
     public static boolean isValid(double length,double width, double height, boolean regular )
     {
-        if(length<=0 && width <=0 || height <=0 )
+        if(length<=0 || width <=0 || height <=0 )
             return false;
         if(regular)
         {

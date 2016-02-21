@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 cost = Calculator.calcLetterPostInUS(item, weight,length, width, height);
             if(country.equals("International"))
                 cost = Calculator.calcLetterPostInternational(item, weight,length, width, height);
-            
+
         }
         else if(category.equals("Other")){
             if(country.equals("Canada"))

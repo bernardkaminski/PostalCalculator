@@ -71,7 +71,7 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -98,7 +98,7 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcNonStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcNonStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -125,7 +125,7 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcLetterPostInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcLetterPostInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -152,7 +152,7 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcOtherInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcOtherInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -179,7 +179,7 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcLetterPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcLetterPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -206,7 +206,157 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcOtherPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcOtherPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+    }
+
+    @UiThreadTest
+    public void testWeightOutOfRangeStandardCanada()
+    {
+        // This is how you set the value of a spinner
+        ArrayAdapter adapter = (ArrayAdapter) country.getAdapter();
+        int position = adapter.getPosition("Canada"); // Canada, US, or International
+        country.setSelection(position);
+
+        ArrayAdapter adapter2 = (ArrayAdapter) category.getAdapter();
+        int position2 = adapter2.getPosition("Standard Letter-Post"); // Standard Letter-Post or Other
+        category.setSelection(position2);
+
+        ArrayAdapter adapter3 = (ArrayAdapter) itemType.getAdapter();
+        int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
+        itemType.setSelection(position3);
+
+        // Other values that should be tested but cannot be tested is a sequence of characters
+        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        weight.setText("501");
+
+        calculateButton.performClick();
+
+        assertEquals(-1.0, Calculator.calcStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+    }
+
+    @UiThreadTest
+    public void testWeightOutOfRangeNonStandardCanada()
+    {
+        // This is how you set the value of a spinner
+        ArrayAdapter adapter = (ArrayAdapter) country.getAdapter();
+        int position = adapter.getPosition("Canada"); // Canada, US, or International
+        country.setSelection(position);
+
+        ArrayAdapter adapter2 = (ArrayAdapter) category.getAdapter();
+        int position2 = adapter2.getPosition("Standard Letter-Post"); // Standard Letter-Post or Other
+        category.setSelection(position2);
+
+        ArrayAdapter adapter3 = (ArrayAdapter) itemType.getAdapter();
+        int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
+        itemType.setSelection(position3);
+
+        // Other values that should be tested but cannot be tested is a sequence of characters
+        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        weight.setText("501");
+
+        calculateButton.performClick();
+
+        assertEquals(-1.0, Calculator.calcNonStandardInCanada(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+    }
+
+    @UiThreadTest
+    public void testWeightOutOfRangeLetterUS()
+    {
+        // This is how you set the value of a spinner
+        ArrayAdapter adapter = (ArrayAdapter) country.getAdapter();
+        int position = adapter.getPosition("US"); // Canada, US, or International
+        country.setSelection(position);
+
+        ArrayAdapter adapter2 = (ArrayAdapter) category.getAdapter();
+        int position2 = adapter2.getPosition("Standard Letter-Post"); // Standard Letter-Post or Other
+        category.setSelection(position2);
+
+        ArrayAdapter adapter3 = (ArrayAdapter) itemType.getAdapter();
+        int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
+        itemType.setSelection(position3);
+
+        // Other values that should be tested but cannot be tested is a sequence of characters
+        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        weight.setText("501");
+
+        calculateButton.performClick();
+
+        assertEquals(-1.0, Calculator.calcLetterPostInUS(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+    }
+
+    @UiThreadTest
+    public void testWeightOutOfRangeOtherUS()
+    {
+        // This is how you set the value of a spinner
+        ArrayAdapter adapter = (ArrayAdapter) country.getAdapter();
+        int position = adapter.getPosition("US"); // Canada, US, or International
+        country.setSelection(position);
+
+        ArrayAdapter adapter2 = (ArrayAdapter) category.getAdapter();
+        int position2 = adapter2.getPosition("Standard Letter-Post"); // Standard Letter-Post or Other
+        category.setSelection(position2);
+
+        ArrayAdapter adapter3 = (ArrayAdapter) itemType.getAdapter();
+        int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
+        itemType.setSelection(position3);
+
+        // Other values that should be tested but cannot be tested is a sequence of characters
+        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        weight.setText("501");
+
+        calculateButton.performClick();
+
+        assertEquals(-1.0, Calculator.calcOtherInUS(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+    }
+
+    @UiThreadTest
+    public void testWeightOutOfRangePostInternational()
+    {
+        // This is how you set the value of a spinner
+        ArrayAdapter adapter = (ArrayAdapter) country.getAdapter();
+        int position = adapter.getPosition("International"); // Canada, US, or International
+        country.setSelection(position);
+
+        ArrayAdapter adapter2 = (ArrayAdapter) category.getAdapter();
+        int position2 = adapter2.getPosition("Standard Letter-Post"); // Standard Letter-Post or Other
+        category.setSelection(position2);
+
+        ArrayAdapter adapter3 = (ArrayAdapter) itemType.getAdapter();
+        int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
+        itemType.setSelection(position3);
+
+        // Other values that should be tested but cannot be tested is a sequence of characters
+        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        weight.setText("501");
+
+        calculateButton.performClick();
+
+        assertEquals(-1.0, Calculator.calcLetterPostInternational(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+    }
+
+    @UiThreadTest
+    public void testWeightOutOfRangeOtherPostInternational()
+    {
+        // This is how you set the value of a spinner
+        ArrayAdapter adapter = (ArrayAdapter) country.getAdapter();
+        int position = adapter.getPosition("International"); // Canada, US, or International
+        country.setSelection(position);
+
+        ArrayAdapter adapter2 = (ArrayAdapter) category.getAdapter();
+        int position2 = adapter2.getPosition("Standard Letter-Post"); // Standard Letter-Post or Other
+        category.setSelection(position2);
+
+        ArrayAdapter adapter3 = (ArrayAdapter) itemType.getAdapter();
+        int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
+        itemType.setSelection(position3);
+
+        // Other values that should be tested but cannot be tested is a sequence of characters
+        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        weight.setText("501");
+
+        calculateButton.performClick();
+
+        assertEquals(-1.0, Calculator.calcOtherPostInternational(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
     }
 
 }

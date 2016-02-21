@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         TextView costDisplay = (TextView)findViewById(R.id.resulting_cost);
-        if(cost == -1)
+        if(cost == -1 || cost == -2)
             costDisplay.setText("invalid parameters");
         else if (cost == -3)
             costDisplay.setText("invalid size");

@@ -21,6 +21,9 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
     Activity activity;
 
     private EditText weight;
+    private EditText width;
+    private EditText height;
+    private EditText length;
     private Spinner country;
     private Spinner category;
     private Spinner itemType;
@@ -40,6 +43,9 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         category = (Spinner) activity.findViewById(R.id.spinnerCategory);
         itemType = (Spinner) activity.findViewById(R.id.spinnerItemType);
         weight = (EditText) activity.findViewById(R.id.editText);
+        width = (EditText) activity.findViewById(R.id.width);
+        height = (EditText) activity.findViewById(R.id.height);
+        length = (EditText) activity.findViewById(R.id.length);
     }
 
     public void tearDown() throws Exception
@@ -65,13 +71,17 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcStandardInCanada takes as its second parameter a double
         weight.setText("-1");
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20");
 
         calculateButton.performClick();
 
-        assertEquals(-2.0, Calculator.calcStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
+
+
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -92,13 +102,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcNonStandardInCanada takes as its second parameter a double
         weight.setText("-1");
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
 
         calculateButton.performClick();
 
-        assertEquals(-2.0, Calculator.calcNonStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcNonStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -119,13 +131,14 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcLetterPostInUS takes as its second parameter a double
         weight.setText("-1");
-
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
         calculateButton.performClick();
 
-        assertEquals(-2.0, Calculator.calcLetterPostInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcLetterPostInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -146,13 +159,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherInUS takes as its second parameter a double
         weight.setText("-1");
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
 
         calculateButton.performClick();
 
-        assertEquals(-2.0, Calculator.calcOtherInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcOtherInUS(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -173,13 +188,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcLetterPostInternational takes as its second parameter a double
         weight.setText("-1");
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
 
         calculateButton.performClick();
 
-        assertEquals(-2.0, Calculator.calcLetterPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcLetterPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     // This tests invalid inputs for weight. Country, category, and item type have a default value by design
@@ -200,13 +217,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherPostInternational takes as its second parameter a double
         weight.setText("-1");
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
 
         calculateButton.performClick();
 
-        assertEquals(-2.0, Calculator.calcOtherPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-2.0, Calculator.calcOtherPostInternational(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     @UiThreadTest
@@ -225,13 +244,16 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
         weight.setText("501");
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString())));
+        assertEquals(-1.0, Calculator.calcStandardInCanada(ItemType.StampsInBookletsCoilsPanes, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     @UiThreadTest
@@ -250,13 +272,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
         weight.setText("501");
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcNonStandardInCanada(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+        assertEquals(-1.0, Calculator.calcNonStandardInCanada(ItemType.SingleStamp, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     @UiThreadTest
@@ -275,13 +299,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
         weight.setText("501");
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcLetterPostInUS(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+        assertEquals(-1.0, Calculator.calcLetterPostInUS(ItemType.SingleStamp, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     @UiThreadTest
@@ -300,13 +326,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
         weight.setText("501");
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcOtherInUS(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+        assertEquals(-1.0, Calculator.calcOtherInUS(ItemType.SingleStamp, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     @UiThreadTest
@@ -325,13 +353,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
         weight.setText("501");
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcLetterPostInternational(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+        assertEquals(-1.0, Calculator.calcLetterPostInternational(ItemType.SingleStamp, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
     @UiThreadTest
@@ -350,13 +380,15 @@ public class CalculatorTest extends ActivityInstrumentationTestCase2<MainActivit
         int position3 = adapter3.getPosition("Stamps in booklets/coils/panes");
         itemType.setSelection(position3);
 
-        // Other values that should be tested but cannot be tested is a sequence of characters
-        // because Calculator.calcOtherPostInternational takes as its second parameter a double
+        width.setText("10");
+        height.setText("0.3");
+        length.setText("20.0");
         weight.setText("501");
 
         calculateButton.performClick();
 
-        assertEquals(-1.0, Calculator.calcOtherPostInternational(ItemType.SingleStamp, Double.valueOf(weight.getText().toString())));
+        assertEquals(-1.0, Calculator.calcOtherPostInternational(ItemType.SingleStamp, Double.valueOf(weight.getText().toString()),
+                Double.valueOf(length.getText().toString()),Double.valueOf(width.getText().toString()), Double.valueOf(height.getText().toString())));
     }
 
 }

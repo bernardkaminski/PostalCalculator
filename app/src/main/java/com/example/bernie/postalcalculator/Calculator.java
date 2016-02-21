@@ -103,7 +103,7 @@ public class Calculator {
                 if(weight > 30)
                     return 1.80;
                 if(weight >0)
-                    return 1.19;
+                    return 1.20;
                 return -2;
             default:
                 return -2;

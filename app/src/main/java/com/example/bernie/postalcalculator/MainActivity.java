@@ -98,6 +98,26 @@ public class MainActivity extends AppCompatActivity {
         if(text.length()>0)
                 weight= Double.parseDouble(text);
 
+        double length=0;
+        EditText l = (EditText)findViewById(R.id.length);
+        String len =l.getText().toString();
+        if(len.length()>0)
+            length= Double.parseDouble(len);
+
+        double width=0;
+        EditText w = (EditText)findViewById(R.id.width);
+        String wid =w.getText().toString();
+        if(len.length()>0)
+            width= Double.parseDouble(wid);
+
+        double height=0;
+        EditText h = (EditText)findViewById(R.id.height);
+        String hei =h.getText().toString();
+        if(len.length()>0)
+            height= Double.parseDouble(hei);
+
+
+
         ItemType item=null;
         if(type.equals("Stamps in booklets/coils/panes"))
         {
@@ -112,24 +132,28 @@ public class MainActivity extends AppCompatActivity {
         double cost=-1;
         if(category.equals("Standard Letter-Post")){
             if(country.equals("Canada"))
-                cost = Calculator.calcStandardInCanada(item,weight);
+                cost = Calculator.calcStandardInCanada(item,weight,length, width, height);
             if(country.equals("US"))
-                cost = Calculator.calcLetterPostInUS(item, weight);
+                cost = Calculator.calcLetterPostInUS(item, weight,length, width, height);
             if(country.equals("International"))
-                cost = Calculator.calcLetterPostInternational(item,weight);
+                cost = Calculator.calcLetterPostInternational(item, weight,length, width, height);
+            
         }
         else if(category.equals("Other")){
             if(country.equals("Canada"))
-                cost = Calculator.calcNonStandardInCanada(item, weight);
+                cost = Calculator.calcNonStandardInCanada(item, weight,length, width, height);
             if(country.equals("US"))
-                cost = Calculator.calcOtherInUS(item, weight);
+                cost = Calculator.calcOtherInUS(item, weight,length, width, height);
             if(country.equals("International"))
-                cost = Calculator.calcOtherPostInternational(item, weight);
+                cost = Calculator.calcOtherPostInternational(item, weight,length, width, height);
+
         }
 
         TextView costDisplay = (TextView)findViewById(R.id.resulting_cost);
         if(cost == -1)
             costDisplay.setText("invalid parameters");
+        else if (cost == -3)
+            costDisplay.setText("invalid size");
         else
             costDisplay.setText(Double.toString(cost));
 

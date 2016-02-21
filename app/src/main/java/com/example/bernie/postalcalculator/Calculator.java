@@ -9,8 +9,10 @@ public class Calculator {
     {
 
     }
-    public static double calcStandardInCanada(ItemType type, double weight)
+    public static double calcStandardInCanada(ItemType type, double weight,double length,double width, double height)
     {
+        if(!Calculator.isValid(length, width, height, true))
+            return -3;
         switch (type){
             case StampsInBookletsCoilsPanes:
                 if(weight > 50)
@@ -42,8 +44,10 @@ public class Calculator {
 
     }
 
-    public static double calcNonStandardInCanada(ItemType type, double weight)
+    public static double calcNonStandardInCanada(ItemType type, double weight,double length,double width, double height)
     {
+        if(!Calculator.isValid(length, width, height, false))
+            return -3;
         switch (type){
             case MeterPostalIndicia:
                 if(weight > 500)
@@ -78,8 +82,10 @@ public class Calculator {
         }
     }
 
-    public static double calcLetterPostInUS(ItemType type, double weight)
+    public static double calcLetterPostInUS(ItemType type, double weight,double length,double width, double height)
     {
+        if(!Calculator.isValid(length, width, height, true))
+            return -3;
 
         switch (type){
 
@@ -104,8 +110,10 @@ public class Calculator {
         }
     }
 
-    public static double calcOtherInUS(ItemType type, double weight)
+    public static double calcOtherInUS(ItemType type, double weight,double length,double width, double height)
     {
+        if(!Calculator.isValid(length, width, height, false))
+            return -3;
         switch (type){
             case MeterPostalIndicia:
                 if(weight > 500)
@@ -132,8 +140,10 @@ public class Calculator {
         }
     }
 
-    public static double calcLetterPostInternational(ItemType type, double weight)
+    public static double calcLetterPostInternational(ItemType type, double weight,double length,double width, double height)
     {
+        if(!Calculator.isValid(length, width, height, true))
+            return -3;
         switch (type){
 
             case MeterPostalIndicia:
@@ -158,8 +168,10 @@ public class Calculator {
 
     }
 
-    public static double calcOtherPostInternational(ItemType type, double weight)
+    public static double calcOtherPostInternational(ItemType type, double weight,double length,double width, double height)
     {
+        if(!Calculator.isValid(length, width, height, false))
+            return -3;
         switch (type){
             case SingleStamp:
                 if(weight > 500)
@@ -186,4 +198,23 @@ public class Calculator {
         }
     }
 
+    public static boolean isValid(double length,double width, double height, boolean regular )
+    {
+        if(length<=0 && width <=0 || height <=0 )
+            return false;
+        if(regular)
+        {
+            if(length<=24.5 && width <=15.6 && height <= .5 )
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            if(length<=38 && width <=27 && height <= 2 )
+                return true;
+            else
+                return false;
+        }
+    }
 }

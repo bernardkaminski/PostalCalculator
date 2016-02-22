@@ -21,7 +21,8 @@ public class Calculator {
                     return 1.20;
                 if(weight >0)
                     return .85;
-                return -2;
+                if(weight < 0)
+                    return -2;
             case MeterPostalIndicia:
                 if(weight > 50)
                     return -1;
@@ -29,7 +30,8 @@ public class Calculator {
                     return 1.19;
                 if(weight >0)
                     return .80;
-                return -2;
+                if(weight < 0)
+                    return -2;
             case SingleStamp:
                 if(weight > 50)
                     return -1;
@@ -37,7 +39,8 @@ public class Calculator {
                     return 1.20;
                 if(weight >0)
                     return 1.00;
-                return -2;
+                if(weight < 0)
+                    return -2;
             default:
                 return -2;
         }
@@ -62,7 +65,8 @@ public class Calculator {
                     return 2.77;
                 if(weight >0)
                     return 1.71;
-                return -2;
+                if(weight < 0)
+                    return -2;
             case SingleStamp:
                 if(weight > 500)
                     return -1;
@@ -76,7 +80,8 @@ public class Calculator {
                     return 2.95;
                 if(weight >0)
                     return 1.80;
-                return -2;
+                if(weight < 0)
+                    return -2;
             default:
                 return -2;
         }
@@ -96,7 +101,8 @@ public class Calculator {
                     return 1.72;
                 if(weight >0)
                     return 1.19;
-                return -2;
+                if(weight < 0)
+                    return -2;
             case SingleStamp:
                 if(weight > 50)
                     return -1;
@@ -104,7 +110,8 @@ public class Calculator {
                     return 1.80;
                 if(weight >0)
                     return 1.20;
-                return -2;
+                if(weight < 0)
+                    return -2;
             default:
                 return -2;
         }
@@ -122,9 +129,8 @@ public class Calculator {
                     return 9.69;
                 if(weight >100)
                     return 4.85;
-                if(weight >0)
-                    return 2.68;
-                return -2;
+                if(weight < 0)
+                    return -2;
             case SingleStamp:
                 if(weight > 500)
                     return -1;
@@ -134,7 +140,8 @@ public class Calculator {
                     return 5.15;
                 if(weight >0)
                     return 2.95;
-                return -2;
+                if(weight < 0)
+                    return -2;
             default:
                 return -2;
         }
